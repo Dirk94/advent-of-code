@@ -1,6 +1,6 @@
 import fs from 'fs'
 
-export function readFileAsTwoSortedNumberArrays(inputPath) {
+export function readFileAsTwoNumberArrays(inputPath) {
     const asString = fs.readFileSync(inputPath).toString()
     const lines = asString.split("\n");
 
@@ -16,8 +16,5 @@ export function readFileAsTwoSortedNumberArrays(inputPath) {
         secondArray.push(parts[1])
     }
 
-    return [
-        firstArray.sort(),
-        secondArray.sort()
-    ]
+    return [firstArray, secondArray]
 }
