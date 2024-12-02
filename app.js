@@ -59,16 +59,6 @@ function getSafeReportCount(array) {
         return iterations
     }
 
-
-
-    for (let i=0; i<array.length; i++) {
-        const lines = getAllPossibleIterations(array[i])
-
-        for (const line of lines) {
-
-        }
-    }
-
     const safeReports = array.map(item => getAllPossibleIterations(item))
         .filter(item => isAtLeastOneLineSafe(item))
         .length
