@@ -18,3 +18,13 @@ export function readFileAsTwoNumberArrays(inputPath) {
 
     return [firstArray, secondArray]
 }
+
+export function readFileAsLinesOfNumbers(inputPath) {
+    const asString = fs.readFileSync(inputPath).toString()
+    const lines = asString.split("\n");
+
+    return lines.map(
+        item => item.split(" ")
+            .map(item => parseInt(item))
+    )
+}
