@@ -28,3 +28,18 @@ export function readFileAsLinesOfNumbers(inputPath) {
             .map(item => parseInt(item))
     )
 }
+
+export function readFileAsString(inputPath) {
+    return fs.readFileSync(inputPath).toString()
+}
+
+export function getAllRegexMatches(regex, input) {
+    let m;
+
+    const matches = []
+    while ((m = regex.exec(input)) !== null) {
+        matches.push(m[1])
+    }
+
+    return matches
+}

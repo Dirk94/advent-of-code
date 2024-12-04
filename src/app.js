@@ -1,10 +1,36 @@
-import {readFileAsLinesOfNumbers, readFileAsTwoNumberArrays} from "./utils.js";
+import {getAllRegexMatches, readFileAsLinesOfNumbers, readFileAsString, readFileAsTwoNumberArrays} from "./utils.js";
+import {evaluateMul, getValidTokens, isDo, isDont, isMul} from "./parser.js";
 
 function start() {
-    const lines = readFileAsLinesOfNumbers("./input/day-02.txt");
+    const input = readFileAsString("./input/day-03.txt");
+    getValidMulScore(input)
 
-    getSafeReportCount(lines)
+}
 
+function getValidMulScore(input) {
+    const tokens = getValidTokens(input)
+
+    let total = 0;
+    let mulEnabled = true
+    for (const token of tokens) {
+        if (isDo(token)) {
+            mulEnabled = true;
+            continue;
+        }
+        if (isDont(token)) {
+            mulEnabled = false;
+            continue;
+        }
+        if (isMul(token)) {
+            if (!mulEnabled) {
+                continue;
+            }
+
+            total += evaluateMul(token)
+        }
+    }
+
+    console.dir({ total })
 }
 
 function getSafeReportCount(array) {
